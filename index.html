@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Cookies by Borges · Links</title>
-  <meta name="description" content="Cookies by Borges: cardápio, encomendas pelo WhatsApp, retirada, pontos de venda e catálogo de Natal.">
+  <meta name="description" content="Cookies by Borges: cardápio, encomendas pelo WhatsApp, retirada e dúvidas frequentes.">
   <meta name="theme-color" content="#fce6e2">
+  <!-- Ilustrações protegidas por direitos autorais: pede ao Google para não listá-las no Google Imagens -->
+  <meta name="robots" content="noimageindex">
+  <meta name="copyright" content="© 2026 Cookies by Borges. Todos os direitos reservados.">
   <meta property="og:title" content="Cookies by Borges">
   <meta property="og:description" content="Cookies artesanais feitos com carinho. Escolha uma opção e peça o seu!">
   <!-- Imagem de compartilhamento: WhatsApp e Facebook exigem URL absoluta.
@@ -22,15 +25,16 @@
 
   <!--
     EDITE AQUI
-    Os links de cada botão estão nos atributos href mais abaixo (procure por "exemplo.com" e "wa.me").
+    Os links de cada botão estão nos atributos href mais abaixo (cardápio, retirada e dúvidas frequentes apontam para o Google Drive; WhatsApp em "wa.me").
     Cores e fontes ficam nas variáveis do :root, no começo do styles.css.
+    O site carrega o styles.min.css: depois de editar o styles.css, rode "npm run build:css" para regerá-lo.
     Fontes: assets/fonts · Ilustrações: assets/images (os originais não são alterados; cópias ajustadas
     ficam em assets/images/sem-fundo e assets/images/variacoes).
   -->
 
   <link rel="icon" href="assets/images/logo-menina.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/woff2/bukhari-script.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.css">
 </head>
 <body>
 
@@ -65,18 +69,8 @@
 
     <main class="card">
 
-      <!-- Laço -->
-      <svg class="deco bow" viewBox="0 0 180 100" aria-hidden="true" focusable="false">
-        <g filter="url(#rough)">
-          <path class="bow-fill" d="M84 38C76 54 62 74 48 92L60 90 64 99C76 78 86 58 90 40Z"/>
-          <path class="bow-fill" d="M96 38C104 54 118 74 132 92L120 90 116 99C104 78 94 58 90 40Z"/>
-          <path class="bow-fill" d="M90 34C70 12 34 2 25 18 17 34 50 48 90 34Z"/>
-          <path class="bow-fill" d="M90 34C110 12 146 2 155 18 163 34 130 48 90 34Z"/>
-          <path class="bow-fold" d="M84 32C68 22 46 15 34 20M96 32C112 22 134 15 146 20"/>
-          <ellipse class="bow-fill" cx="90" cy="36" rx="11" ry="10"/>
-          <path class="bow-fold" d="M85 31q5 -3 10 0"/>
-        </g>
-      </svg>
+      <!-- Laço (cópia recortada e na cor vinho de assets/images/laco.svg) -->
+      <img class="deco bow" src="assets/images/variacoes/laco.svg" alt="" width="128" height="100">
 
       <header class="brand">
         <img class="brand__portrait" src="assets/images/logo-menina.svg" width="85" height="113"
@@ -95,7 +89,7 @@
 
           <!-- Cardápio -->
           <li>
-            <a class="link-card" href="https://exemplo.com/cardapio">
+            <a class="link-card" href="https://drive.google.com/file/d/1A8vOALTwIrJamoGJGsxfi9iaMiycvtZE/view?usp=sharing">
               <span class="link-card__icon link-card__icon--jar" aria-hidden="true">
                 <img src="assets/images/pote-biscioto.svg" alt="" width="99" height="113">
                 <svg class="link-card__sparks link-card__sparks--left" viewBox="0 0 30 30" focusable="false"><use href="#i-sparks"/></svg>
@@ -112,7 +106,7 @@
           <li class="links__item--sticker">
             <!-- Cookie decorativo na borda direita entre Cardápio e WhatsApp -->
             <img class="deco deco-sticker deco-sticker--between" src="assets/images/sem-fundo/biscoito-mordido.svg" alt="" width="85" height="85">
-            <a class="link-card" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20encomenda%20de%20cookies.">
+            <a class="link-card" href="https://wa.me/558599540929?text=Ol%C3%A1%2C%20gostaria%20de%20pedir%20um%20Cookie.">
               <span class="link-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 100 100" focusable="false">
                   <g filter="url(#rough)">
@@ -133,7 +127,7 @@
 
           <!-- Retirada -->
           <li>
-            <a class="link-card" href="https://maps.google.com/?q=Cookies+by+Borges">
+            <a class="link-card" href="https://drive.google.com/file/d/1Y6WbNXF-C6Rbnb062Iktdiu2UdDOsMlJ/view?usp=sharing">
               <span class="link-card__icon link-card__icon--pop" aria-hidden="true">
                 <img src="assets/images/sem-fundo/saco-cookie-comido.svg" alt="" width="85" height="85">
               </span>
@@ -146,16 +140,16 @@
             </a>
           </li>
 
-          <!-- Presencial -->
+          <!-- Dúvidas frequentes -->
           <li>
-            <a class="link-card" href="https://exemplo.com/locais">
+            <a class="link-card" href="https://drive.google.com/file/d/1Gxb2S223h_YtbyF-K0eIZJX4wPmDay0E/view?usp=sharing">
               <span class="link-card__icon link-card__icon--pop" aria-hidden="true">
                 <img src="assets/images/sem-fundo/biscoito-mordido.svg" alt="" width="85" height="85">
                 <svg class="link-card__sparks link-card__sparks--left" viewBox="0 0 30 30" focusable="false"></svg>
               </span>
               <span class="link-card__text">
-                <span class="link-card__title">Presencial</span>
-                <span class="link-card__subtitle">Locais que estamos</span>
+                <span class="link-card__title">Dúvidas frequentes</span>
+                <span class="link-card__subtitle">Tire suas dúvidas</span>
               </span>
               <svg class="link-card__arrow" viewBox="0 0 16 24" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg>
             </a>
@@ -186,7 +180,7 @@
       FIM do comentário -->
 
       <!-- Avaliação -->
-      <a class="tape" href="https://exemplo.com/avaliar">
+      <a class="tape" href="https://forms.gle/dKekasLTZALs8C9H7" target="_blank" rel="noopener">
         <svg class="tape__sparks" viewBox="0 0 30 30" aria-hidden="true" focusable="false"><use href="#i-sparks"/></svg>
         <span class="tape__paper">
           Avalie sua experiência
@@ -197,6 +191,7 @@
       <footer class="footer">
         <img class="footer__quote" src="assets/images/frase-impacto.svg" width="142" height="111"
              alt="Life's better with cookies, by Borges" lang="en" loading="lazy" decoding="async">
+        <p class="footer__copyright">© 2026 Cookies by Borges.</p>
       </footer>
     </main>
 

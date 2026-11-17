@@ -5,6 +5,7 @@
 !.gitignore
 !index.html
 !styles.css
+!styles.min.css
 
 !assets/fonts/woff2/*.woff2
 
@@ -16,6 +17,7 @@
 !assets/images/sem-fundo/fue-cookie.svg
 !assets/images/sem-fundo/saco-cookie-comido.svg
 !assets/images/variacoes/logo-nome.svg
+!assets/images/variacoes/laco.svg
 !assets/images/variacoes/background-pattern.seamless.svg
 
 # Pastas do editor e do Claude nunca sobem
