@@ -1,0 +1,696 @@
+/* ========== Fontes ==========
+   WOFF2 com subset latino (pt-BR) em assets/fonts/woff2 (os .ttf/.otf originais ficam só no computador, fora do Git). */
+@font-face {
+  font-family: "Bukhari Script";
+  src: url("assets/fonts/woff2/bukhari-script.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anothershabby";
+  src: url("assets/fonts/woff2/anothershabby-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anothershabby";
+  src: url("assets/fonts/woff2/anothershabby-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anothershabby";
+  src: url("assets/fonts/woff2/anothershabby-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anothershabby";
+  src: url("assets/fonts/woff2/anothershabby-heavy.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CY Grotesk Key";
+  src: url("assets/fonts/woff2/cy-grotesk-key-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ========== Variáveis ========== */
+:root {
+  --page-bg: #fce6e2; /* mesma cor de fundo do background-pattern.svg */
+  /* Véu sobre o padrão do fundo: o último número controla o quanto ele é suavizado
+     (0 = padrão original, 1 = padrão some). Use a mesma cor do --page-bg em RGB. */
+  --page-bg-veil: rgb(252 230 226 / 0.65);
+  --pink: #e39c9c;
+  --pink-card: #fad6d7;
+  --cream: #eee8e0;
+  --wine: #7d142c;
+  --wine-dark: #5a0e20;
+  --wine-soft: #b05864;
+
+  /* Sombra difusa dos botões, em tom de vinho bem transparente */
+  --shadow-soft: 0 0.35rem 1rem rgb(125 20 44 / 0.1), 0 0.1rem 0.25rem rgb(125 20 44 / 0.06);
+  --shadow-soft-hover: 0 0.6rem 1.5rem rgb(125 20 44 / 0.14), 0 0.15rem 0.35rem rgb(125 20 44 / 0.08);
+
+  /* Títulos (Cookies, botões, Natal) */
+  --font-script: "Bukhari Script", "Brush Script MT", cursive;
+  /* Chamadas manuscritas. Versão trial: os números saem com marca d'água, evite usar com dígitos */
+  --font-hand: "Anothershabby", "Segoe Print", cursive;
+  /* Textos de apoio */
+  --font-body: "CY Grotesk Key", "Segoe UI", system-ui, sans-serif;
+
+  --radius-pill: 2.7rem 3rem 2.8rem 3.1rem / 2.9rem 2.6rem 3.1rem 2.7rem;
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ========== Base ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  /* Versão do padrão que se repete sem emenda (gerada a partir do background-pattern.svg original) */
+  background:
+    linear-gradient(var(--page-bg-veil), var(--page-bg-veil)),
+    var(--page-bg) url("assets/images/variacoes/background-pattern.seamless.svg") 0 0 / clamp(18rem, 70vw, 26rem) repeat;
+  color: var(--wine);
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 3.6vw, 1.0625rem);
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Textura de papel sobre a página inteira */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.49 0 0 0 0 0.08 0 0 0 0 0.17 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Classes usadas dentro dos desenhos SVG */
+.ink {
+  fill: none;
+  stroke: var(--wine);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ink--thin {
+  stroke-width: 2.2;
+}
+
+.ink--bold {
+  stroke-width: 5;
+}
+
+.paper-card {
+  fill: var(--pink-card);
+}
+
+/* Contorno claro em volta do desenho, como nos adesivos */
+.sticker-halo {
+  fill: var(--pink-card);
+  stroke: var(--pink-card);
+  stroke-width: 14;
+  stroke-linejoin: round;
+}
+
+.crumb {
+  fill: var(--wine);
+}
+
+.bow-fill {
+  fill: var(--wine);
+}
+
+.bow-fold {
+  fill: none;
+  stroke: var(--wine-soft);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.snow {
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.snow--fill {
+  fill: var(--cream);
+  stroke: none;
+}
+
+/* ========== Palco ========== */
+/* Corta só as decorações que saem pela lateral da tela, sem criar rolagem horizontal */
+.page {
+  overflow-x: hidden;
+}
+
+@supports (overflow-x: clip) {
+  .page {
+    overflow-x: clip;
+  }
+}
+
+.stage {
+  position: relative;
+  width: min(100%, 30rem);
+  margin-inline: auto;
+  padding: 3.25rem 0.625rem 4rem;
+}
+
+/* Cartão com borda ondulada (border-image em SVG, se adapta a qualquer altura) */
+.card {
+  position: relative;
+  z-index: 1;
+  border-style: solid;
+  border-color: transparent;
+  border-width: clamp(1.5rem, 6vw, 1.875rem);
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M50 12C75 12 75 28 100 28S125 12 150 12C171 12 188 29 188 50C188 75 172 75 172 100S188 125 188 150C188 171 171 188 150 188C125 188 125 172 100 172S75 188 50 188C29 188 12 171 12 150C12 125 28 125 28 100S12 75 12 50C12 29 29 12 50 12Z' fill='%23fad6d7' stroke='%237d142c' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E");
+  border-image-slice: 50 fill;
+  border-image-width: clamp(2.5rem, 10vw, 3.125rem);
+  border-image-repeat: round;
+  padding: 0.5rem 10px 2.5rem;
+}
+
+/* ========== Decorações ========== */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  display: block;
+}
+
+.bow {
+  top: clamp(-2.4rem, -8vw, -1.9rem);
+  left: 50%;
+  z-index: 3;
+  width: clamp(6.5rem, 30vw, 8.5rem);
+  transform-origin: 50% 35%;
+  translate: -50% 0;
+  animation: sway 5s ease-in-out infinite;
+}
+
+.deco-sticker {
+  z-index: 2;
+  filter: drop-shadow(0 0.25rem 0.35rem rgb(125 20 44 / 0.25));
+}
+
+.deco-sticker--top {
+  top: 0.25rem;
+  right: clamp(-2.75rem, -6vw, -1.5rem);
+  width: clamp(5.5rem, 26vw, 7.5rem);
+  rotate: 18deg;
+  animation: float 6s ease-in-out infinite;
+}
+
+.deco-sticker--bottom {
+  bottom: 17rem;
+  left: clamp(-3rem, -7vw, -1.75rem);
+  width: clamp(5.25rem, 26vw, 7.25rem);
+  rotate: -25deg;
+  animation: float 7s ease-in-out -2s infinite;
+}
+
+.crumbs {
+  top: 5.5rem;
+  right: clamp(0.75rem, 3vw, 1.5rem);
+  z-index: 2;
+  width: 1.5rem;
+}
+
+/* ========== Cabeçalho / marca ========== */
+.brand {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  column-gap: 0.5rem;
+  padding: 1.25rem 0.25rem 0;
+}
+
+.brand__portrait {
+  width: 100%;
+  max-width: 8.5rem;
+  justify-self: end;
+}
+
+.brand__name {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.brand__script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 11.5vw, 4rem);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.brand__by {
+  align-self: flex-end;
+  width: clamp(5.5rem, 26vw, 7.5rem);
+  margin: -0.15rem 0.25rem 0 0;
+  rotate: -4deg;
+}
+
+.brand__sparks {
+  position: absolute;
+  top: -1.6rem;
+  right: 0.25rem;
+  width: clamp(1.75rem, 8vw, 2.25rem);
+  scale: -1 1;
+}
+
+.brand__heart {
+  display: block;
+  width: 1.35rem;
+  margin: 0.75rem auto 0;
+  animation: beat 2.4s ease-in-out infinite;
+}
+
+/* ========== Chamada ========== */
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+  font-family: var(--font-hand);
+  font-size: clamp(1.2rem, 5vw, 1.45rem);
+  text-align: center;
+}
+
+.hint::before,
+.hint::after {
+  content: "";
+  flex: 1 1 0;
+  max-width: 3rem;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--wine);
+}
+
+.hint::before {
+  margin-left: auto;
+}
+
+.hint::after {
+  margin-right: auto;
+}
+
+/* ========== Lista de links ========== */
+.links {
+  display: grid;
+  gap: clamp(1rem, 4vw, 1.375rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links li {
+  animation: rise 0.6s var(--ease-bounce) both;
+}
+
+.links li:nth-child(1) { animation-delay: 0.05s; }
+.links li:nth-child(2) { animation-delay: 0.12s; }
+.links li:nth-child(3) { animation-delay: 0.19s; }
+.links li:nth-child(4) { animation-delay: 0.26s; }
+
+.link-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: clamp(3.75rem, 18.5vw, 5.25rem) minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.5rem;
+  min-height: clamp(4.75rem, 21vw, 5.75rem);
+  padding: 0.4rem clamp(0.85rem, 3.5vw, 1.25rem) 0.4rem clamp(0.6rem, 3vw, 1rem);
+  border-radius: var(--radius-pill);
+  color: var(--wine);
+  text-decoration: none;
+  transition: transform 0.25s var(--ease-bounce);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Fundo creme + contorno principal + sombra suave */
+.link-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 2.5px solid var(--wine);
+  border-radius: var(--radius-pill);
+  background-color: var(--cream);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.25s ease;
+}
+
+.link-card__icon {
+  position: relative;
+  display: block;
+}
+
+.link-card__icon > :first-child {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.35s var(--ease-bounce);
+}
+
+.link-card__icon--jar {
+  margin-block: -1.1rem -0.2rem;
+  padding-inline: 0.3rem;
+}
+
+.link-card__sparks {
+  position: absolute;
+  width: 1.35rem;
+}
+
+.link-card__sparks--left {
+  top: 0.1rem;
+  left: -1rem;
+}
+
+.link-card__sparks--right {
+  top: -0.6rem;
+  right: -0.9rem;
+  scale: -1 1;
+}
+
+/* Brilho preso ao card (e não à ilustração), no canto superior direito */
+.link-card__sparks--card-right {
+  top: -0.7rem;
+  right: -0.6rem;
+  scale: -1 1;
+}
+
+.link-card__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  text-align: left;
+}
+
+.link-card__title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(1.55rem, 6.8vw, 2rem);
+  line-height: 1;
+}
+
+.link-card__subtitle {
+  font-size: clamp(0.875rem, 3.6vw, 1rem);
+  line-height: 1.15;
+}
+
+.link-card__arrow {
+  width: clamp(0.75rem, 3vw, 0.95rem);
+  /* Afasta a seta da borda direita do card */
+  margin-inline-end: clamp(0.5rem, 2.5vw, 0.85rem);
+  transition: translate 0.25s var(--ease-bounce);
+}
+
+/* Hover só em dispositivos com mouse: no celular o efeito ficaria "preso" depois do toque */
+@media (hover: hover) {
+  .link-card:hover {
+    transform: translateY(-0.2rem) rotate(-0.4deg);
+  }
+
+  .link-card:hover::before {
+    box-shadow: var(--shadow-soft-hover);
+  }
+
+  .link-card:hover .link-card__icon > :first-child {
+    transform: rotate(-8deg) scale(1.06);
+  }
+
+  .link-card:hover .link-card__arrow {
+    translate: 0.25rem 0;
+  }
+}
+
+.link-card:active {
+  transform: translateY(0.1rem);
+}
+
+/* ========== Destaque: Catálogo de Natal ========== */
+.featured {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: min(100% - 1rem, 22.25rem);
+  margin: clamp(2rem, 8vw, 2.5rem) auto 0;
+  padding: 0.4rem 0.6rem 0.5rem 0.9rem;
+  border-style: solid;
+  border-color: transparent;
+  /* 1.1rem + 10px de folga entre a borda e a costura tracejada */
+  border-width: 1.725rem;
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M20 4C25 4 25 9 30 9S35 4 40 4C48 4 56 12 56 20C56 25 51 25 51 30S56 35 56 40C56 48 48 56 40 56C35 56 35 51 30 51S25 56 20 56C12 56 4 48 4 40C4 35 9 35 9 30S4 25 4 20C4 12 12 4 20 4Z' fill='%237d142c'/%3E%3C/svg%3E");
+  border-image-slice: 20 fill;
+  border-image-width: 1.25rem;
+  border-image-repeat: round;
+  color: var(--cream);
+  text-decoration: none;
+  filter: drop-shadow(0 0.4rem 0.5rem rgb(90 14 32 / 0.3));
+  /* Sem transform aqui: girar/escalar um border-image deixa linhas nas emendas dos pedaços (efeito quadriculado).
+     O hover usa top + sombra no card e inclina só o texto. */
+  top: 0;
+  transition: top 0.3s var(--ease-bounce), filter 0.3s ease;
+  animation: rise 0.6s var(--ease-bounce) 0.35s both;
+}
+
+/* Costura tracejada */
+.featured::before {
+  content: "";
+  position: absolute;
+  inset: -0.35rem;
+  border: 2px dashed color-mix(in srgb, var(--cream) 85%, transparent);
+  border-radius: 1.6rem 1.9rem 1.7rem 2rem;
+  pointer-events: none;
+}
+
+.featured__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(1.45rem, 7.5vw, 2.35rem);
+  line-height: 1.05;
+  text-align: center;
+  white-space: nowrap;
+  transition: rotate 0.3s var(--ease-bounce), scale 0.3s var(--ease-bounce);
+}
+
+.featured__tree {
+  flex: none;
+  width: clamp(2.25rem, 10vw, 2.85rem);
+  margin-top: 0.35rem;
+}
+
+@media (hover: hover) {
+  .featured:hover {
+    top: -0.2rem;
+    filter: drop-shadow(0 0.65rem 0.6rem rgb(90 14 32 / 0.35));
+  }
+
+  .featured:hover .featured__text {
+    rotate: -2deg;
+    scale: 1.05;
+  }
+
+  .featured:hover .featured__tree {
+    animation: jingle 0.6s ease-in-out;
+  }
+}
+
+.featured:active {
+  top: 0.1rem;
+}
+
+/* ========== Fita: Avalie sua experiência ========== */
+.tape {
+  position: relative;
+  z-index: 3;
+  display: block;
+  width: fit-content;
+  margin: clamp(2rem, 8vw, 2.5rem) auto 0;
+  color: var(--wine);
+  text-decoration: none;
+  rotate: -2.5deg;
+  filter: drop-shadow(0 0.2rem 0.25rem rgb(125 20 44 / 0.22));
+  transition: rotate 0.3s var(--ease-bounce), transform 0.3s var(--ease-bounce);
+  animation: rise 0.6s var(--ease-bounce) 0.45s both;
+}
+
+.tape__paper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem clamp(1rem, 5vw, 1.6rem) 0.6rem;
+  background-color: var(--cream);
+  background-image: repeating-linear-gradient(90deg, transparent 0 0.5rem, rgb(255 255 255 / 0.25) 0.5rem 0.55rem);
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 5vw, 1.45rem);
+  line-height: 1;
+  white-space: nowrap;
+  clip-path: polygon(0.5rem 0, calc(100% - 0.45rem) 0, 100% 16%, calc(100% - 0.45rem) 32%, 100% 49%, calc(100% - 0.5rem) 66%, 100% 83%, calc(100% - 0.4rem) 100%, 0.45rem 100%, 0 84%, 0.5rem 67%, 0 50%, 0.45rem 33%, 0 17%);
+}
+
+.tape__sparks {
+  position: absolute;
+  top: -0.7rem;
+  left: -1.3rem;
+  width: 1.35rem;
+}
+
+.tape__heart {
+  width: 1.1rem;
+  flex: none;
+}
+
+@media (hover: hover) {
+  .tape:hover {
+    rotate: 1deg;
+    transform: translateY(-0.15rem);
+  }
+}
+
+/* ========== Foco por teclado ========== */
+.link-card:focus-visible,
+.featured:focus-visible,
+.tape:focus-visible {
+  outline: 3px dashed var(--wine);
+  outline-offset: 0.4rem;
+}
+
+.featured:focus-visible {
+  outline-offset: 0.75rem;
+}
+
+.link-card:focus-visible {
+  transform: translateY(-0.2rem);
+}
+
+/* ========== Rodapé ========== */
+.footer {
+  position: relative;
+  z-index: 3;
+  margin-top: 1.75rem;
+}
+
+.footer__quote {
+  width: clamp(9rem, 44vw, 11.5rem);
+  margin-inline: auto;
+  rotate: -3deg;
+}
+
+/* ========== Animações ========== */
+/* Usa translate/scale individuais (e não transform) para não anular o transform do :hover/:active */
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 0.9rem;
+    scale: 0.97;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+    scale: none;
+  }
+}
+
+@keyframes sway {
+  0%, 100% { rotate: -3deg; }
+  50% { rotate: 3deg; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.4rem); }
+}
+
+@keyframes beat {
+  0%, 60%, 100% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+}
+
+@keyframes jingle {
+  0%, 100% { rotate: 0deg; }
+  25% { rotate: -10deg; }
+  75% { rotate: 10deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Telas maiores: um pouco mais de respiro ao redor */
+@media (min-width: 40rem) {
+  .stage {
+    padding-top: 4.5rem;
+    padding-bottom: 5rem;
+  }
+
+  .card {
+    padding-inline: 0.5rem;
+  }
+}
