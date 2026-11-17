@@ -396,6 +396,13 @@ img {
   padding-inline: 0.3rem;
 }
 
+/* Retirada e Presencial: ilustração maior que a coluna, vazando para fora do card como o pote e o balão */
+.link-card__icon--pop > :first-child {
+  width: 125%;
+  max-width: none;
+  margin: -0.9rem -12.5% -0.35rem;
+}
+
 .link-card__sparks {
   position: absolute;
   width: 1.35rem;
@@ -430,7 +437,7 @@ img {
 .link-card__title {
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(1.55rem, 6.8vw, 2rem);
+  font-size: clamp(1.35rem, 5.8vw, 1.7rem);
   line-height: 1;
 }
 
