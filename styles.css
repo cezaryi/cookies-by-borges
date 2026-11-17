@@ -196,7 +196,7 @@ img {
   position: relative;
   width: min(100%, 30rem);
   margin-inline: auto;
-  padding: 3.25rem 0.625rem 4rem;
+  padding: 1.5rem 0.625rem 4rem;
 }
 
 /* Cartão com borda ondulada (border-image em SVG, se adapta a qualquer altura) */
@@ -674,7 +674,7 @@ img {
 /* Telas maiores: um pouco mais de respiro ao redor */
 @media (min-width: 40rem) {
   .stage {
-    padding-top: 4.5rem;
+    padding-top: 1.5rem;
     padding-bottom: 5rem;
   }
 
